@@ -1,0 +1,126 @@
+{# @var obProduct \Lovata\Shopaholic\Classes\Item\ProductItem #}
+{% set obOfferList = obProduct.offer %}
+
+<section class="container shadow p-3 mb-5 bg-white rounded product-page-detailed pb-4">
+    <div class="row">
+        <div class="col-lg-6">
+            <div id="carouselExampleIndicators" class="carousel product-detailed__carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    {% for i in obProduct.images.count() %}
+                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index0 }}" class="{% if loop.first %} active {% endif %}"></li>
+                    {% endfor %}
+                </ol>
+
+                <div class="carousel-inner mb-3 mb-lg-0 product-detailed__carousel-inner" id="offer-images-wrapper">
+                    <div id="offer-images">
+                        {% for obImage in obProduct.images %}
+                        <div class="carousel-item product-detailed__carousel-item {% if loop.first %} active {% endif %} h-100">
+                            <img class="d-block w-100 h-100 product-detailed__carousel-item-img" src="{{ obImage.path }}" alt="{{ obImage.description }}" title="{{ obImage.title }}" loading="lazy">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <h1>{{ obProduct.name }}</h1>
+
+            {% if obOfferList.isNotEmpty() %}
+            <div class="mb-3">
+                <label><strong>Выберите вариант:</strong></label>
+                <div class="d-flex flex-wrap">
+                    {% for obOffer in obOfferList %}
+                    <label class="mr-3">
+                        <input type="radio"
+                               name="offer_variant"
+                               value="{{ obOffer.id }}"
+                               data-price="{{ obOffer.price }}"
+                               data-old-price="{{ obOffer.old_price }}"
+                               data-currency="{{ obOffer.currency }}"
+                               data-request="onGetOfferImages"
+                               data-request-data="offer_id: '{{ obOffer.id }}'"
+                               data-request-update="offer_images: '#offer-images'"
+                               data-request-success="updatePrices()"
+                               {% if loop.first %}checked{% endif %}>
+                        {{ obOffer.name }}
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="product-card__price-bar mb-3">
+                <span class="product-card__current-price pr-2 font-weight-bold text-danger">
+                    <span id="price-value">{{ obOfferList.first().price }}</span>
+                    <span id="price-currency">{{ obOfferList.first().currency }}</span>
+                </span>
+                {% if obOfferList.first().old_price %}
+                <span class="product-card__old-price text-muted pr-2" id="old-price-block">
+                    <s><span id="old-price-value">{{ obOfferList.first().old_price }}</span> {{ obOfferList.first().currency }}</s>
+                </span>
+                {% else %}
+                <span id="old-price-block" style="display:none;"></span>
+                {% endif %}
+            </div>
+
+            {% if cart_is_available %}
+            <form class="mb-0 add-to-cart-form">
+                <input type="hidden" name="offer_id" id="hidden-offer-id" value="{{ obOfferList.first().id }}">
+                {% partial 'form/button-change-quantity/button-change-quantity' btnChangeQtyValue=1 btnProductPage=true btnMaxQtyValue=obOfferList.first().quantity %}
+                {% partial 'form/button-add-to-cart/button-add-to-cart' btnAddClasses='btn-lg' %}
+            </form>
+            {% endif %}
+            {% endif %}
+
+            <p class="product-detailed__description">{{ obProduct.preview_text }}</p>
+
+            {% if obProduct.brand.isNotEmpty() %}
+            <p class="product-detailed__brand">
+                <span class="font-weight-bold">Brand:</span>
+                <a href="{{ obProduct.brand.getPageUrl('catalog') }}" class="product-detailed__category-link">{{ obProduct.brand.name }}</a>
+            </p>
+            {% endif %}
+
+            <p class="product-detailed__category">
+                <span class="font-weight-bold">Category:</span>
+                <a href="{{ obProduct.category.getPageUrl('catalog') }}" class="product-detailed__category-link">{{ obProduct.category.name }}</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class="container wysiwyg">{{ obProduct.description|raw }}</div>
+
+<script>
+    function updatePrices() {
+        const selected = document.querySelector('input[name="offer_variant"]:checked');
+        if (!selected) return;
+
+        const priceValue = document.getElementById('price-value');
+        const priceCurrency = document.getElementById('price-currency');
+        const oldPriceValue = document.getElementById('old-price-value');
+        const oldPriceBlock = document.getElementById('old-price-block');
+        const offerInput = document.getElementById('hidden-offer-id');
+
+        if (priceValue) priceValue.textContent = selected.dataset.price;
+        if (priceCurrency) priceCurrency.textContent = selected.dataset.currency;
+        if (offerInput) offerInput.value = selected.value;
+
+        if (selected.dataset.oldPrice && oldPriceValue && oldPriceBlock) {
+            oldPriceValue.textContent = selected.dataset.oldPrice;
+            oldPriceBlock.style.display = 'inline';
+        } else if (oldPriceBlock) {
+            oldPriceBlock.style.display = 'none';
+        }
+    }
+</script>
+

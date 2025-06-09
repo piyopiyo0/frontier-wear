@@ -1,0 +1,10 @@
+name: 'Frontier Theme for Shopaholic'
+description: 'The official e-commerce theme for Frontier'
+author: Pilot Wfc
+homepage: 'https://ibis.net.ua'
+code: 'frontier-shopaholic' #TODO: Change code to shopaholic-bootstrap
+form: config/fields.yaml
+require:
+    - RainLab.Pages
+    - Lovata.Shopaholic
+    - Lovata.Toolbox

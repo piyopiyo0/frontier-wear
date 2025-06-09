@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="{{ 'assets/css/style.css' | theme }}">
+    {% styles %}
+    {% if seo_toolbox_is_available %}
+        {% placeholder seo_tags default %}
+            {% component 'SeoToolbox' %}
+        {% endplaceholder %}
+    {% endif %}
+</head>
+<body class="body">
+    {% partial 'header/header-new' %}
+    <div class="site-content">
+        {% page %}
+    </div>
+    {% partial 'footer/footer-new' %}
+    <script src="{{ 'assets/js/script.js' | theme }}"></script>
+    <script src="{{ 'modules/system/assets/js/framework.js' | app }}"></script>
+    <script src="{{ 'modules/system/assets/js/framework.extras.js' | app }}"></script>
+    <link rel="stylesheet" href="{{ 'modules/system/assets/css/framework.extras.css' | app }}">
+    {% framework extras %}
+    {% scripts %}
+</body>
+</html>

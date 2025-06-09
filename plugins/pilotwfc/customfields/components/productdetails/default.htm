@@ -1,0 +1,51 @@
+<!--
+{% if obProduct %}
+<div class="product__box">
+    <div class="product__left">
+        <div class="product__left-content">
+            <h3 class="product__title">{{ obProduct.name }}</h3>
+            <p class="product__descr">Видео: {{ obProduct.video }}</p>
+            <p class="product__descr">URL Ibis: {{ obProduct.ibis_url }}</p>
+            <p class="product__descr">Характеристики: {{ obProduct.features }}</p>
+            <p class="product__descr">Особенности: {{ obProduct.peculiarities }}</p>
+            <p class="product__descr">Размер: {{ obProduct.size }}</p>
+            <p class="product__descr">Вес: {{ obProduct.weight }}</p>
+            <p class="product__descr">Компоненты: {{ obProduct.components_dimen }}</p>
+            <p class="product__descr">Масштаб: {{ obProduct.scale }}</p>
+            <p class="product__descr">Гарантия: {{ obProduct.warranty }}</p>
+            <p class="product__descr">Батарейки: {{ obProduct.battery }}</p>
+            <p class="product__descr">Возраст: {{ obProduct.age }}</p>
+            <p class="product__descr">Пол: {{ obProduct.sex }}</p>
+        </div>
+    </div>
+</div>
+{% else %}
+<p>Product not found.</p>
+{% endif %}
+{% if obProduct.images is not empty %}
+{% for obImage in obProduct.images %}
+<div class="swiper-slide product__content-image">
+    <img src="{{ obImage.path }}" alt="{{ obProduct.name }}">
+</div>
+{% endfor %}
+{% else %}
+<p>Gallery not found.</p>
+{% endif %}
+{% if obProduct.file_3d %}
+<p>3D файл доступен: {{ obProduct.file_3d.getPath() }}</p>
+{% else %}
+<p>3D файл отсутствует.</p>
+{% endif %}
+
+{% if obProduct.file_3d %}
+<model-viewer src="{{ obProduct.file_3d.getPath() }}"
+              alt="3D модель товара"
+              ar
+              auto-rotate
+              camera-controls
+              style="width: 100%; height: 400px;">
+</model-viewer>
+{% else %}
+<p>3D файл отсутствует.</p>
+{% endif %}
+-->

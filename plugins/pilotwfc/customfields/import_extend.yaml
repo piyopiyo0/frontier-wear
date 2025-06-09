@@ -1,0 +1,4 @@
+columns:
+    features:
+        label: 'Характеристики'
+        type: text

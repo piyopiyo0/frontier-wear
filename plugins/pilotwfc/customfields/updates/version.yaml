@@ -1,0 +1,4 @@
+v1.0.1: First version of Customfields
+v1.0.5:
+    - Set up database table
+    -  add_custom_fields_to_products_table.php

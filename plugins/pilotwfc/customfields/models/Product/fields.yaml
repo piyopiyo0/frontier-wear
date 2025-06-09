@@ -1,0 +1,108 @@
+fields:
+    video:
+        label: 'Посилання на відео'
+        type: text
+        span: left
+        tab: 'Otamanko info'
+
+    ibis_url:
+        label: 'Ibis URL'
+        type: text
+        span: left
+        tab: 'Otamanko info'
+
+    features:
+        label: 'Характеристики'
+        type: textarea
+        size: large
+        span: left
+        tab: 'Otamanko info'
+
+    peculiarities:
+        label: 'Особливості'
+        type: richeditor
+        size: large
+        span: left
+        tab: 'Otamanko info'
+
+    size:
+        label: 'Розмір виробу'
+        type: text
+        span: left
+        tab: 'Otamanko info'
+
+    weight:
+        label: 'Вага'
+        type: text
+        span: left
+        tab: 'Otamanko info'
+
+    components_dimen:
+        label: 'Розмір комплектуючих'
+        type: text
+        span: left
+        tab: 'Otamanko info'
+
+    scale:
+        label: 'Масштаб'
+        type: text
+        span: left
+        tab: 'Otamanko info'
+
+    warranty:
+        label: 'Гарантія'
+        type: dropdown
+        options:
+            '14_days' : '14 діб'
+            '3_months' : '3 міс'
+            '6_months': '6 міс'
+            '1_year': '1 рік'
+        span: left
+        tab: 'Otamanko info'
+
+    battery:
+        label: 'Формат батарейок'
+        type: dropdown
+        options:
+            'none': 'Нет'
+            'AA': 'AA'
+            'AAA': 'AAA'
+            'rechargeable': 'Перезаряжаемая'
+        span: left
+        tab: 'Otamanko info'
+
+    age:
+        label: 'Вік'
+        type: dropdown
+        options:
+            '3-5': '3-5 років'
+            '6-9': '6-9 років'
+            '10-12': '10-12 років'
+        span: left
+        tab: 'Otamanko info'
+
+    sex:
+        label: 'Стать'
+        type: dropdown
+        options:
+            'male': 'Для хлопчиків'
+            'female': 'Для дівчаток'
+            'unisex': 'Унісекс'
+        span: left
+        tab: 'Otamanko info'
+
+    file_3d:
+        label: '3D файл'
+        type: fileupload
+        mode: file
+        attachment: true
+        span: left
+        tab: 'Otamanko info'
+
+    instructions:
+        label: 'Інструкція'
+        type: fileupload
+        mode: file
+        attachment: true
+        span: left
+        tab: 'Otamanko info'

@@ -1,0 +1,8 @@
+{
+    "name": "pilotwfc/customfields-plugin",
+    "type": "october-plugin",
+    "description": "No description provided ...",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "name": "lovata/relatedproductsshopaholic-plugin",
+    "type": "october-plugin",
+    "description": "Allows you to attach to the goods related products",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}
