@@ -17,7 +17,8 @@
     {% endif %}
 </head>
 <body class="body">
-    {% partial 'header/header-new' %}
+{% set headerStyle = this.page.header_style ?? 'solid' %}
+    {% partial 'header/header-new' style = headerStyle %}
     <div class="site-content">
         {% page %}
     </div>

@@ -2,6 +2,7 @@ title = "Index"
 url = "/"
 layout = "main-new"
 is_hidden = 0
+header_style = "transparent"
 
 [PromoBlockList]
 sorting = "default"
@@ -18,8 +19,8 @@ sorting = "no"
 {% partial 'main/text-banner' %}
 {% partial 'main/info-block' %}
 {% partial 'main/products-small' %}
-{% partial 'main/basket' %}
-{% partial 'main/main-popup' %}
+{% partial 'basket' %}
+{% partial 'popup-register' %}
 </main>
 {% partial 'content/carousel/carousel' arImageList=this.theme.main_slider %}
 
